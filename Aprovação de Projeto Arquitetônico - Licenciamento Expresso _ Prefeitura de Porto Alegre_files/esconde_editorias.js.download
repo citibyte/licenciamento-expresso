@@ -1,0 +1,100 @@
+function getAllElementsWithAttribute(attribute)
+{
+  var listaExclusaoGeral = [
+        'Água e Esgotos',
+        'Assistência Social e Cidadania',
+        'Comunicação Social',
+        'Desenvolvimento Econômico',
+        'Desenvolvimento Social e Esporte',
+        'Direitos do Consumidor',
+        'Executivo',
+        'Habitação', 
+        'Infraestrutura e Mobilidade Urbana',
+        'Limpeza Urbana',
+        'Meio Ambiente e Sustentabilidade',
+        'Parcerias Estratégicas',
+        'Planejamento e Gestão',
+        'Relações Institucionais',
+        'Tecnologia',
+        'Transporte e Circulação',
+        'Urbanismo'
+  ];
+  var listaExclusaoCarta = [ //n�o tem habita��o, mas tem Urbanismo
+        'Água e Esgotos',
+        'Assistência Social e Cidadania',
+        'Comunicação Social',
+        'Desenvolvimento Econômico',
+        'Desenvolvimento Social e Esporte',
+        'Direitos do Consumidor',
+        'Executivo',
+        'Habitação', 
+        'Infraestrutura e Mobilidade Urbana',
+        'Limpeza Urbana',
+        'Meio Ambiente e Sustentabilidade',
+        'Parcerias Estratégicas',
+        'Planejamento e Gestão',
+        'Relações Institucionais',
+        'Tecnologia',
+        'Transporte e Circulação'
+  ];
+
+  var listaExclusaoCatalogo = [ // tem Habita��o E tem Urbanismo
+        'Água e Esgotos',
+        'Assistência Social e Cidadania',
+        'Comunicação Social',
+        'Desenvolvimento Econômico',
+        'Desenvolvimento Social e Esporte',
+        'Direitos do Consumidor',
+        'Executivo', 
+        'Infraestrutura e Mobilidade Urbana',
+        'Limpeza Urbana',
+        'Meio Ambiente e Sustentabilidade',
+        'Parcerias Estratégicas',
+        'Planejamento e Gestão',
+        'Relações Institucionais',
+        'Tecnologia',
+        'Transporte e Circulação'
+  ];
+
+  var elemExclusao = [];
+  var matchingElements = [];
+  var allElements = document.getElementsByTagName('label');
+  var pagePath = window.location.href;
+  var resultPathCatalogo = pagePath.indexOf("catalogo-conselhos");
+  var resultPathCarta = pagePath.indexOf("carta-de-servicos");
+  var found;
+  
+
+
+  for (var i = 0, n = allElements.length; i < n; i++)
+  {
+    if (allElements[i].getAttribute(attribute) !== null)
+    {
+      // Element exists with attribute. Add to array.
+      const texto = allElements[i].textContent;
+
+
+      if(resultPathCatalogo != -1) {
+	    found = listaExclusaoCatalogo.find(element => element == texto);  
+	console.log("resultPathCatalogo: "+resultPathCatalogo);
+      } else if(resultPathCarta != -1) {
+	    found = listaExclusaoCarta.find(element => element == texto);  
+	console.log("resultPathCarta: "+resultPathCarta);
+      } else {
+      	    found = listaExclusaoGeral.find(element => element == texto);
+		console.log("CAIU NA GERAL");
+      }
+
+      if(found)
+          elemExclusao.push(allElements[i]);
+    }
+  }
+  elemExclusao.forEach((e) => {
+     e.remove();
+  });
+}
+
+// Em baixo tem que chamar ela
+
+getAllElementsWithAttribute('for');
+

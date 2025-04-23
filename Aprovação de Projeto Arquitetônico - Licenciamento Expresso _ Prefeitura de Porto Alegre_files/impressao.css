@@ -1,0 +1,75 @@
+@media print {
+  * {
+    border-color: #000 !important;
+  }
+  .noticia-principal, .noticia-secundaria, .noticia-terciaria, .card, .btn, .form-control, .alert, a[href*="tags"], .capa-noticias-secretaria .views-field, .lista-colunas {
+    border: 1px solid #000;
+  }
+  .views-field-field-categoria {
+    color: #000 !important;
+  }
+  .barra-acessibilidade, .rodape-redes, #block-rodapedosite .row, .assinatura, .hero, .breadcrumb, .navbar-header, .views-exposed-form, .footer hr, .a2a_kit {
+    display: none;
+  }
+  a {
+    text-decoration: underline !important;
+  }
+  a[href*="mailto"]:after, a[href*="tags"]:after {
+    content: "";
+  }
+  .views-field-field-palavras-chaves a:after, .pagination a:after, .previous a:after, .next a:after, .creditos a:after, .div-link a:after {
+    content: "";
+  }
+  header.navbar {
+    border-bottom: 1px solid #000;
+    display: block;
+    padding-bottom: 12px;
+    margin-bottom: 30px !important;
+  }
+  .navbar-collapse.collapse {
+    display: none !important;
+  }
+  .footer {
+    border-color: #000;
+  }
+  .page-header {
+    display: block;
+    top: 0;
+  }
+  .main-content section + aside, .main-content aside + section {
+    margin-top: 30px;
+  }
+  .main-content aside, .main-content section {
+    width: 100%;
+    clear: both;
+  }
+  .bloco-servico-contato, .region-content-fullscreen section {
+    padding: 0;
+  }
+  .form-control {
+    padding: 12px;
+  }
+  .pagination > .active > a, .pagination > .active > span {
+    background-color: #808080 !important;
+  }
+  section[class*="gabinete"] {
+    border-bottom-color: #fff !important;
+  }
+  .hero-titulo {
+    background-color: #fff !important;
+    border-color: #fff !important;
+  }
+  .lista-colunas li:before {
+    border-bottom: 1px solid #000;
+  }
+  .lista-etapas li:before {
+    background-color: #e6e6e6 !important;
+    border: 2px solid #000;
+  }
+  .lista-etapas li > div:before {
+    background-color: #e6e6e6 !important;
+  }
+  .lista-etapas .titulo-etapa {
+    background-color: #e6e6e6 !important;
+  }
+}

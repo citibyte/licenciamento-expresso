@@ -1,0 +1,103 @@
+(function ($) {
+
+	Drupal.behaviors.myBehavior = {
+  	attach: function (context, settings) {
+  	 	$('[name=busca_data]').datepicker({dateFormat: 'dd/mm/yy'});
+		$('[name=busca_data]').mask('09/99/9999');
+ 	 }
+	};
+	
+	function getUrlVars()
+	{
+		var vars = [], hash;
+		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		for(var i = 0; i < hashes.length; i++)
+		{
+			hash = hashes[i].split('=');
+			key = decodeURI(hash[0]);
+			vars.push(key);
+			vars[key] = decodeURI(hash[1]);
+		}
+		return vars;
+	}
+	
+	$('#edit-field-noticia-data-no-calendario-value-min').addClass('bef-datepicker');
+	$('#edit-field-noticia-data-no-calendario-value-max').addClass('bef-datepicker');
+	
+	$('.hms-field').mask('29:59');
+	
+	Drupal.behaviors.ajusteCamposData = {
+  	attach: function (context, settings) {
+  	 	$('.bef-datepicker.date-field').each(function(index){
+		
+		//Cria um campo alternativo escondido para submeter em formato nativo (mm/dd/yy)
+		var altFieldId = 'altField' + $(this).attr('id');
+		if($('#'+altFieldId).length == 0){	
+			var altField = $(this).clone();
+
+			$(altField).attr('id',altFieldId);
+			$(altField).attr('class','');
+			$(altField).val(formatDateEN($(this).val()));
+			$(altField).hide();
+			$(this).after($(altField));
+		
+			//Evita que o campo seja submetido com o form
+			$(this).removeAttr('data-drupal-selector');
+			$(this).removeAttr('name');
+		
+			$(this).datepicker({ 
+				dateFormat: 'dd/mm/yy',
+				altField: '#' + altFieldId,
+				altFormat: "yy-mm-dd"
+			});
+		}
+		if($(this).val() && isFormatoEN($(this).val()))
+			$(this).val(formatDateBR($(this).val()));
+		
+		$(this).mask('09/99/9999');
+		
+		});
+ 	 }
+	};
+	
+
+	if(!$.cookie("exibiu-popup-aulas")){
+		$.removeCookie("spb_block-coronaviruspopupvoltaasaulas");
+		$.cookie("exibiu-popup-aulas",true);
+	}
+	
+	function isFormatoEN(data){
+		//TODO: usar regex
+		return data.indexOf('-') > 0
+	}
+	
+	
+	function formatDateBR(date) {
+	//formatar a data pra PT-BR	
+	 var dateObj = new Date(date);
+	 var month = dateObj.getUTCMonth() + 1; //months from 1-12
+	 var day = dateObj.getUTCDate();
+	 var year = dateObj.getUTCFullYear();
+	 
+	 if (month < 10) month = '0' + month;
+     if (day < 10) day = '0' + day;
+
+     return [day, month, year].join('/');
+	}
+	
+	function formatDateEN(date) {
+	//Data deve estar no formato BR
+	if(!date || isFormatoEN(date))
+		return date;
+	 var dateFrags = date.split('/');
+     var d = new Date(dateFrags[2],dateFrags[1],dateFrags[0]),
+         month = '' + (d.getMonth()),
+         day = '' + d.getDate(),
+         year = d.getFullYear();
+
+     if (month < 10) month = '0' + month;
+     if (day < 10) day = '0' + day;
+
+     return [year, month, day].join('-');
+	}
+})(jQuery);

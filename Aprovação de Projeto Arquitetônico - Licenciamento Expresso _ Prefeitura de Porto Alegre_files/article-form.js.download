@@ -1,0 +1,14 @@
+(function ($) {
+	
+	$('#checkbox-repique').change(function (){
+		var checkbox = $(this);
+		/*$('input[id*="edit-field-noticia-data-no-calendario"]').each(function(){
+			$(this).prop('disabled',checkbox.is(':checked'));
+		});*/
+		
+		if(checkbox.is(':checked'))
+			$('#edit-field-noticia-data-no-calendario-wrapper').hide();
+		else
+			$('#edit-field-noticia-data-no-calendario-wrapper').show();
+	});
+})(jQuery);
