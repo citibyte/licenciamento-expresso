@@ -1,0 +1,77 @@
+/* Definindo as regras gerais de estilo */
+* {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1.5;
+    font-family: "Lato", Verdana, sans-serif;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+h1{
+    color: #09AFA7;
+}
+
+strong{
+    color: #09AFA7;
+}
+
+.container {
+    border: 3px solid #ededee;
+    border-left: 0;
+    padding: 15px 15px 15px 30px;
+    position: relative;
+    margin-bottom: 40px;
+    color: #525257;
+}
+
+button.dropbtn {
+    background-color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-family: "Lato", Verdana, sans-serif;
+    font-size: 1em;
+    color: #525257;
+    padding: 10px 20px;
+    margin: 5px 0;
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: 3px solid #ededee;
+    border-left: 0;
+    border-radius: 4px;
+}
+
+button.dropbtn:hover {
+    background-color: #f4f4f4;
+}
+
+.dropdown-content {
+    display: none;
+    background-color: #09AFA7;
+    color: #ffffff;
+    border: 3px solid #ededee;
+    border-top: 0;
+    padding: 10px 20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: 5px;
+}
+
+button.dropbtn.active + .dropdown-content {
+    display: block;
+}
+
+.arrow {
+    float: right;
+}
+
+.container1 {
+    border: 3px solid #ededee;
+    border-left: 0;
+    padding: 15px 15px 15px 30px;
+    position: relative;
+    margin-bottom: 40px;
+    color: #525257;
+}
